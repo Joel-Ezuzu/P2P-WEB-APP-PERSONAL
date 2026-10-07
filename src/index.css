@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light mode: white and gold */
+:root {
+  --bg: #ffffff;
+  --surface: #faf8f2;
+  --surface-2: #f1ecdd;
+  --line: #e6dfcb;
+  --fg: #14120b;
+  --muted: #6b6552;
+  --gold: #d4a62a;
+  --gold-text: #8a6508;
+  --on-gold: #14120b;
+  --ok: #15803d;
+  --bad: #b91c1c;
+}
+
+/* Dark mode: black and gold */
+.dark {
+  --bg: #000000;
+  --surface: #0f0f11;
+  --surface-2: #19191c;
+  --line: #2a2a2f;
+  --fg: #f6f3ea;
+  --muted: #9c978a;
+  --gold: #e0b84a;
+  --gold-text: #e0b84a;
+  --on-gold: #0a0a0a;
+  --ok: #34d399;
+  --bad: #f87171;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-text: var(--gold-text);
+  --color-on-gold: var(--on-gold);
+  --color-ok: var(--ok);
+  --color-bad: var(--bad);
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Schibsted Grotesk", "Figtree", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-surface font-sans text-fg antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold-text);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+/* Balances and rates line up in columns */
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
