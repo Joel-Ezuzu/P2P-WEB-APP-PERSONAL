@@ -25,7 +25,9 @@ const periods: { value: Period; label: string }[] = [
 const DAY = 86_400_000
 const dollars = (n: number): string =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
-const isoDay = (d: Date): string => d.toISOString().slice(0, 10)
+/** The calendar day in the person's own time zone, like 2026-10-06. */
+const isoDay = (d: Date): string =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 const label = (d: Date): string => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 
 export default function Statements() {

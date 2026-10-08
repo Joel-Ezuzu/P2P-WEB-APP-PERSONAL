@@ -48,7 +48,7 @@ Two colour modes: **black and gold** and **white and gold**. Switch any time in 
 
 ## Run it
 
-You need [Node.js](https://nodejs.org) 20 or newer.
+You need [Node.js](https://nodejs.org) 20.19 or newer (or 22.12 or newer).
 
 ```bash
 npm install

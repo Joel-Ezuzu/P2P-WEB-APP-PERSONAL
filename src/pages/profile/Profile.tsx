@@ -96,7 +96,7 @@ export default function Profile() {
       {!user.kycVerified && (
         <div className="mt-6 rounded-2xl bg-gold p-5 text-on-gold">
           <p className="font-display text-lg font-bold">Verify your identity</p>
-          <p className="mt-1 opacity-80">It takes about two minutes and unlocks trading with other people.</p>
+          <p className="mt-1 opacity-80">It takes about two minutes and shows other traders that you are real.</p>
           <Link
             to="/kyc"
             className="mt-4 inline-flex h-11 items-center rounded-xl bg-on-gold px-5 font-semibold text-gold"

@@ -12,10 +12,10 @@ export function AuthLayout() {
         Skip to content
       </a>
             <div className="mx-auto flex min-h-dvh w-full max-w-[30rem] flex-col border-x border-line bg-bg px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-        <div className="mb-8 flex items-center justify-between">
+        <header className="mb-8 flex items-center justify-between">
           <Logo />
           <ThemeToggle />
-        </div>
+        </header>
         <main id="main" tabIndex={-1} className="flex-1 outline-none">
           <Outlet />
         </main>

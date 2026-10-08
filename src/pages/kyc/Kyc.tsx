@@ -67,7 +67,7 @@ export default function Kyc() {
     return (
       <>
         <PageHeader title="Verification" back={false} />
-        <Verified title="You are verified" text="Your identity is confirmed. You can trade with other people now." />
+        <Verified title="You are verified" text="Your identity is confirmed. Other traders can now see that you are verified." />
       </>
     )
   }

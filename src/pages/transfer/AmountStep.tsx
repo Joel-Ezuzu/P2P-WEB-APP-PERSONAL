@@ -7,7 +7,7 @@ import { Input } from '../../components/ui/Input'
 import { useWallet } from '../../context/WalletContext'
 import { decimals, transferMin } from '../../data/mock'
 import type { AssetSymbol } from '../../data/types'
-import { formatAsset } from '../../lib/format'
+import { amountText, formatAsset } from '../../lib/format'
 import type { TransferDraft } from './types'
 
 interface AmountStepProps {
@@ -76,7 +76,7 @@ export function AmountStep({ draft, onChange, onChangeRecipient, onContinue }: A
             <button
               type="button"
               onClick={() => {
-                onChange({ amount: balance > 0 ? String(balance) : '' })
+                onChange({ amount: balance > 0 ? amountText(symbol, balance) : '' })
                 setError('')
               }}
               className="rounded-lg px-2 py-1 text-sm font-semibold text-gold-text hover:bg-surface-2"

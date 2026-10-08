@@ -48,3 +48,7 @@ export const ngnCompact = (amount: number): string =>
 /** Shows a dollar total in the currency the person prefers. */
 export const showTotal = (usdAmount: number, currency: 'USD' | 'NGN'): string =>
   currency === 'USD' ? usd(usdAmount) : ngn(usdAmount / usdPrice.NGN)
+
+/** A number as plain text for an input box, never in scientific form like 1e-7. */
+export const amountText = (symbol: AssetSymbol, amount: number): string =>
+  amount.toFixed(decimals[symbol]).replace(/\.?0+$/, '')

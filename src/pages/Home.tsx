@@ -55,11 +55,12 @@ export default function Home() {
   return (
     <>
       <header className="mb-6 flex items-center gap-3">
-        <Link to="/profile" className="flex min-w-0 flex-1 items-center gap-3" aria-label="Open your profile">
+        <Link to="/profile" className="flex min-w-0 flex-1 items-center gap-3">
           <Avatar name={nickname} />
           <span className="min-w-0">
             <span className="block text-sm text-muted">{greeting()}</span>
-            <span className="block truncate font-display font-bold">{nickname}</span>
+            <h1 className="block truncate font-display font-bold">{nickname}</h1>
+            <span className="sr-only">Open your profile</span>
           </span>
         </Link>
         <ThemeToggle />

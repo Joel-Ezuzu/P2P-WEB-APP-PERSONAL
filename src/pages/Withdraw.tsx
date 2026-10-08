@@ -13,7 +13,7 @@ import { useWallet } from '../context/WalletContext'
 import { useSettings } from '../context/SettingsContext'
 import { banks, decimals, withdrawFee, withdrawMin } from '../data/mock'
 import type { AssetSymbol } from '../data/types'
-import { formatAsset, roundTo, shorten } from '../lib/format'
+import { amountText, formatAsset, roundTo, shorten } from '../lib/format'
 
 interface Errors {
   amount?: string
@@ -68,7 +68,7 @@ export default function Withdraw() {
 
   function fillMax() {
     const max = Math.max(0, roundTo(symbol, balance - fee))
-    setAmount(max > 0 ? String(max) : '')
+    setAmount(max > 0 ? amountText(symbol, max) : '')
     setErrors((e) => ({ ...e, amount: undefined }))
   }
 

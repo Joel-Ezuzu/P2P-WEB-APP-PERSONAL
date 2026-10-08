@@ -11,7 +11,7 @@ import { useSettings } from '../../context/SettingsContext'
 import { EXCHANGE_FEE, EXCHANGE_MIN_USD } from '../../data/mock'
 import type { AssetSymbol } from '../../data/types'
 import { useLiveRates } from '../../hooks/useLiveRates'
-import { formatAsset, roundTo } from '../../lib/format'
+import { amountText, formatAsset, roundTo } from '../../lib/format'
 import { SwapCard } from './SwapCard'
 
 interface Quote {
@@ -180,7 +180,7 @@ export default function Exchange() {
             setError('')
           }}
           onMax={() => {
-            setAmount(balanceOf(from) > 0 ? String(balanceOf(from)) : '')
+            setAmount(balanceOf(from) > 0 ? amountText(from, balanceOf(from)) : '')
             setError('')
           }}
         />
