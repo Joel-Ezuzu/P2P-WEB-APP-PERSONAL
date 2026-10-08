@@ -18,11 +18,14 @@ export default function Market() {
   const [params, setParams] = useSearchParams()
   const tab: Tab = params.get('tab') === 'sell' ? 'sell' : 'buy'
   const [method, setMethod] = useState<PaymentMethod | 'All'>('All')
+  const [query, setQuery] = useState('')
   const [amount, setAmount] = useState('')
 
   const wanted = parseFloat(amount) || 0
+  const text = query.trim().toLowerCase()
   const list = offers
     .filter((o) => o.side === (tab === 'buy' ? 'sell' : 'buy') && o.available > 0)
+    .filter((o) => text === '' || o.nickname.toLowerCase().includes(text))
     .filter((o) => method === 'All' || o.methods.includes(method))
     .filter((o) => wanted === 0 || (wanted >= o.minNgn && wanted <= o.maxNgn))
     .sort((a, b) => (tab === 'buy' ? a.rate - b.rate : b.rate - a.rate))
@@ -56,15 +59,25 @@ export default function Market() {
         Market rate: <span className="num font-semibold text-fg">{ngn(MARKET_RATE)}</span> per USDT
       </p>
 
-      <Input
-        className="mt-4"
-        label="Amount in naira (optional)"
-        inputMode="numeric"
-        placeholder="Show offers that fit this amount"
-        leading={<Search className="size-5" aria-hidden="true" />}
-        value={amount}
-        onChange={(e) => setAmount(e.target.value.replace(/\D/g, ''))}
-      />
+      <div className="mt-4 grid grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-3">
+        <Input
+          label="Trader"
+          type="search"
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholder="Search name"
+          leading={<Search className="size-5" aria-hidden="true" />}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <Input
+          label="Amount (₦)"
+          inputMode="numeric"
+          placeholder="Any amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value.replace(/\D/g, ''))}
+        />
+      </div>
 
       <div className="-mx-5 mt-4 flex gap-2 overflow-x-auto px-5 pb-1" role="group" aria-label="Payment method">
         <Chip selected={method === 'All'} onClick={() => setMethod('All')}>
@@ -89,7 +102,7 @@ export default function Market() {
         <div className="mt-8 rounded-2xl border border-dashed border-line px-6 py-10 text-center">
           <SearchX className="mx-auto size-8 text-muted" aria-hidden="true" />
           <p className="mt-3 font-display text-lg font-bold">No offers match</p>
-          <p className="mt-1 text-muted">Try a different amount or payment method, or post your own offer.</p>
+          <p className="mt-1 text-muted">Try a different name, amount or payment method, or post your own offer.</p>
           <Link to="/create-offer" className="mt-4 inline-block font-semibold text-gold-text hover:underline">
             Create an offer
           </Link>
